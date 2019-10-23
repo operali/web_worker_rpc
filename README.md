@@ -1,2 +1,2 @@
 # web_worker_rpc
-safe &amp; easy to use remote call utility for web javascript
+a safe and easy to use remote call script for web
