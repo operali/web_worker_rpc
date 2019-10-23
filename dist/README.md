@@ -25,18 +25,27 @@ in <index.html>
 ```html
 <script src="web_worker_rpc.js"></script>
 ```
+or
+```js
+// host.js
+import rpc from 'web_worker_rpc'
+```
+
 in <host.js>
 ```js
+// host.js
 const rpc = window['__web_worker_rpc']
 // 创建一个新的worker
 // 第一参数传入 url
 // 第二参数转入需要暴露给worker的方法
 let worker = rpc.create('worker.js', {
     hostFun() {
-        console.log('log from host but call in worker')
+        console.log('log from host but call in worker');
     },
     others_api: {
-        add(a, b){return a+b} 
+        add(a, b) {
+            return a+b;
+        } 
     }
 })
 
@@ -64,15 +73,14 @@ let r = await rpc.remote.others_api.add(1, 2);
 ```
 
 ## configuration
-> 谨慎修改配置
+> 谨慎修改以下配置
   
 ```js
 {
-        TIMEOUT: number; // how long is a remote call timeout
-        HEARTBEAT: number; // heartbeat to detect if worker is still alive
-        QPS: number; // requested limit per second, when reach, the worker restart
-        SUBSCRIBE_SIZE: number; // subscribe counter limit to prevent subscribtion leak by user
-        ONERROR_LIMIT: number; // when errors counter reached, the worker restart
+        TIMEOUT: number; // how long is a remote call timeout, default 42000, 42 sec
+        HEARTBEAT: number; // heartbeat to detect if worker is still alive, default 4200, 4.2 sec
+        QPS: number; // requested limit per second, when reach, the worker restart, default 1000, when worker can request 1000 times in a second 
+        ONERROR_LIMIT: number; // when errors counter reached, the worker restart, default 64
 };
 
 
