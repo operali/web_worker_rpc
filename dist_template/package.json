@@ -5,5 +5,11 @@
   "main": "web_worker_rpc.js",
   "author": "operali",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "keywords": [
+    "worker",
+    "rpc",
+    "thread",
+    "sandbox"
+  ]
 }
