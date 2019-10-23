@@ -281,7 +281,6 @@ if (!self.window) {   // worker
   let workerHeader = `importScripts('${document.currentScript.src}');
 `;
 
-  console.log('llasdfasdf')
   class WorkerProxy {
     constructor(script, exports) {
       this.CONFIG = CONFIG;

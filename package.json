@@ -4,7 +4,7 @@
   "description": "describe your project here",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.ts",
-    "build": "npm run clean && webpack --config webpack.prod.ts",
+    "build": "npm run clean & webpack --config webpack.prod.ts",
     "dist": "ts-node run_script distribute",
     "clean": "rimraf build dist",
     "lint": "eslint src --ext ts",
@@ -15,8 +15,8 @@
   "dependencies": {},
   "devDependencies": {
     "@jsrock/core_dep": "latest",
-    "@jsrock/webpack_dep": "latest",
-    "@jsrock/run_script": "latest"
+    "@jsrock/run_script": "^0.0.10",
+    "@jsrock/webpack_dep": "latest"
   },
   "jest": {
     "transform": {

@@ -36,20 +36,7 @@ const config: webpack.Configuration & config_t = {
     resolve: {
         extensions: ['.ts', '.js', '.json']
     },
-    plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: 'node_modules/requirejs/require.js',
-                to: './'
-            }
-        ]),
-        new HtmlWebpackPlugin({
-            templateParameters: {
-                'moduleName': projectConfig.moduleName
-            },
-            template: 'example/module.ejs'
-        })
-    ],
+    plugins: [],
     devServer: {
         open: true,
         overlay: { warnings: false, errors: true },

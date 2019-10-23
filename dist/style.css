@@ -1,0 +1,52 @@
+.flex-base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center
+}
+
+.flex-h {
+    flex-direction: row;
+    justify-content: flex-start
+}
+
+.flex-v {
+    flex-direction: column;
+    justify-content: flex-start
+}
+
+.head-bar {
+    background-color: black;
+    width: 100%;
+    height: 5rem;
+}
+
+.title {
+    color: white;
+    font: italic 2em "Open Sans", sans-serif;
+}
+
+.item-container {
+    width: 100%;
+    height: auto;
+}
+
+.item {
+    height: 2rem;
+}
+
+.distance, .boat {
+    /* padding: 0 3px; */
+    color: blue;
+}
+
+.name {
+    background-color: blue;
+    color: white;
+}
+
+#logger {
+    border: 1px solid grey;
+    border-radius: 0.25rem;
+    /* background-color: grey; */
+}

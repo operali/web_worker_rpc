@@ -10,7 +10,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     plugins: [
         new CopyWebpackPlugin([
             {
-                from: './example/*.*',
+                from: './example/',
                 to: './'
             }
         ])
