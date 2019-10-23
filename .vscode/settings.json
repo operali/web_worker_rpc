@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 60000,
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.printWidth": 120,
+  "prettier.quoteProps": "preserve",
+  "prettier.disableLanguages": [],
+  "prettier.bracketSpacing": true,
+  "prettier.arrowParens": "always"
+}

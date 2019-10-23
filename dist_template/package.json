@@ -1,0 +1,9 @@
+{
+  "name": "web-worker-rpc",
+  "version": "0.0.4",
+  "description": "describe your project here",
+  "main": "index.js",
+  "author": "operali",
+  "license": "MIT",
+  "dependencies": {}
+}
