@@ -130,7 +130,7 @@ rpc.CONFIG.TIMEOUT = 22;// 设置调用 host API超时为22ms, 抛出超时异�
 rpc.TIMEOUT = 22;// 设置调用超时22ms, 抛出超时异常
 ```
 
-##FAQ
+## FAQ
 
 > 当worker发生异常时，如何处理
 
