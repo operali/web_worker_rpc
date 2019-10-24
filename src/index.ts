@@ -1,2 +1,2 @@
 import main from './impl';
-export default main;
+export default main; // only for pack index

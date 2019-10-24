@@ -10,28 +10,28 @@
 - [x] 限制worker过于频繁的请求
 - [x] 以上异常发生可配置将worker重启
 
+## example
+[demo](https://operali.github.io/web_worker_rpc/dist/index.html)
+
 
 ## install
+```bash
+npm install web_worker_rpc
+```
+or
 ```bash
 yarn add web_worker_rpc
 ```
 
-# example
-[demo](./dist/index.html)
-
 
 ## usage
-in <index.html>
+1.  import it in script tag.
+
 ```html
 <script src="web_worker_rpc.js"></script>
 ```
-or
-```js
-// host.js
-import rpc from 'web_worker_rpc'
-```
 
-in <host.js>
+2. RPC in your host.js
 ```js
 // host.js
 const rpc = window['__web_worker_rpc']
@@ -45,46 +45,78 @@ let worker = rpc.create('worker.js', {
     others_api: {
         add(a, b) {
             return a+b;
-        } 
+        },
+        // you can even RPC with callback function!
+        addTickListener(tickTime, handle) {
+            let tid = setInterval(handle, tickTime);
+            ()=>{
+                clearInterval(tid);
+            }
+        }
     }
 })
-
+```
+```js
+// host.js
 // 调用worker的方法
 worker.remote.workerFun().then(r=>console.log(r))
+```
 
+```js
+// host.js
 // 销毁
 worker.dispose();
 ```
 
-in <worker.js>
+3. RPC in worker.js, you can call host api remotely.
 ```js
-// 暴露给host方法
+// 远程提供给host方法
 rpc.exports = {
     workerFun(){
         return 'from worker';
     }
 }
-
-// 调用host方法
+```
+```js
+// 远程调用host方法
 rpc.remote.hostFun(__distance, id);
 // 所有远端方法都是 promise
 let r = await rpc.remote.others_api.add(1, 2);
+```
 
+```js
+// you can even RPC with callback function!
+let canceller = rpc.remote.addTickListener(3000, ()=>{
+    console.log('tick from worker');
+})
+// removeListener
+canceller()
 ```
 
 ## configuration
-> 谨慎修改以下配置
+> <b>谨慎修改配置</b>
   
 ```js
 {
-        TIMEOUT: number; // how long is a remote call timeout, default 42000, 42 sec
-        HEARTBEAT: number; // heartbeat to detect if worker is still alive, default 4200, 4.2 sec
-        QPS: number; // requested limit per second, when reach, the worker restart, default 1000, when worker can request 1000 times in a second
-        ONERROR_LIMIT: number; // when errors counter reached, the worker restart, default 64
+    // how long is a remote call timeout, 
+    // default 42000, 42 sec
+    TIMEOUT: number; 
+
+    // heartbeat to detect if worker is still alive, 
+    // default 4200, 4.2 sec
+    HEARTBEAT: number; 
+
+    // requested limit per second, when reach, the worker restart, 
+    // default 1000, worker can request at most 1000 times in a second
+    QPS: number; 
+
+    // when errors counter reached, the worker restart, 
+    // default 64
+    ONERROR_LIMIT: number; 
 };
+```
 
-
-// usage
+```js
 // in <host.js>
 const rpc = window['__web_worker_rpc']
 rpc.CONFIG.TIMEOUT = 22;// 设置调用 host API超时为22ms, 抛出超时异常
