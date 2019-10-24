@@ -144,7 +144,9 @@ worker.onFail = ()=>{
 ```js
 worker.onFail = ()=>{
     console.log('something bad happen in worker, id of', worker.id);
-    worker = rpc.create(workerUrl, worker.exports);
+    rpc.create(workerUrl, worker.exports).then(
+        newWorker=> worker = newWorker
+    )
 }
 ```
 
