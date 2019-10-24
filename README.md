@@ -4,11 +4,14 @@
 
 一个安全，易用的web worker rpc脚本
 
-## feature
-- [x] 心跳机制检查worker是否正常
-- [x] 限制worker错误数量
-- [x] 限制worker过于频繁的请求
-- [x] 以上异常发生可配置将worker重启
+## description
+```text
+web_worker_rpc，提供宿主与worker通信的RPC能力，并保证了以下情况时宿主的安全性
+1. worker死循环或者任何超出了worker负荷能力 # CONFIG.HEARTBEAT
+2. worker讳规过于频繁地向宿主发生请求 # CONFIG.QPS
+3. worker内部错误达到限制数量 # CONFIG.ONERROR_LIMIT
+4. 单次完成任务时间过长 # CONFIG.TIMEOUT
+```
 
 ## example
 [demo](https://operali.github.io/web_worker_rpc/dist/index.html)
@@ -49,7 +52,8 @@ let worker = rpc.create('worker.js', {
         // you can even RPC with callback function!
         addTickListener(tickTime, handle) {
             let tid = setInterval(handle, tickTime);
-            ()=>{
+            // removeTickListener
+            return ()=>{
                 clearInterval(tid);
             }
         }
@@ -125,3 +129,24 @@ rpc.CONFIG.TIMEOUT = 22;// 设置调用 host API超时为22ms, 抛出超时异�
 // no need to declare rpc, internal
 rpc.TIMEOUT = 22;// 设置调用超时22ms, 抛出超时异常
 ```
+
+##FAQ
+
+> 当worker发生异常时，如何处理
+
+worker将自动关闭，你可以获得异常和关闭的事件，
+```js
+worker.onFail = ()=>{
+    console.log('something bad happen in worker, id of', worker.id);
+}
+```
+你也可以将它重启，简单地，重新create一个
+```js
+worker.onFail = ()=>{
+    console.log('something bad happen in worker, id of', worker.id);
+    worker = rpc.create(workerUrl, worker.exports);
+}
+```
+
+
+
