@@ -55,6 +55,7 @@ body {
   border-radius: 0.5rem;
   width: 100%;
   min-height: 10rem;
+  max-height: 40rem;
   overflow: auto;
 }
 .head-bar {

@@ -283,6 +283,8 @@ if (!self.window) {   // worker
 
   class WorkerProxy {
     constructor(script, exports) {
+      const thisid = genID();
+      this.id = thisid;
       this.CONFIG = CONFIG;
       this.reqMap = {};
       this.subMap = {};
@@ -294,15 +296,17 @@ if (!self.window) {   // worker
       }).then(workerText => {
         var blob;
         try {
-          blob = new Blob([workerHeader, workerText], { type: 'application/javascript' });
+          blob = new Blob([workerHeader, `;rpc.id='${thisid}';`, workerText], { type: 'application/javascript' });
         } catch (e) { // Backwards-compatibility
           console.log(e);
           window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
           blob = new BlobBuilder();
           blob.append(workerHeader);
+          blob.append(workerHeader);
           blob.append(workerText);
           blob = blob.getBlob();
         }
+
         this.worker = new Worker(URL.createObjectURL(blob));
 
         if (exports) {
@@ -399,6 +403,9 @@ if (!self.window) {   // worker
 
   self['__web_worker_rpc'] = {
     create: (url, exports) => {
+      if (exports == undefined) {
+        exports = {}
+      }
       let proxy = new WorkerProxy(url, exports);
       return proxy.finishHandler;
     }
