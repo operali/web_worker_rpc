@@ -1,0 +1,82 @@
+@pleft: 0.5rem;
+@ptop: 0.5rem;
+@borderColor: grey;
+
+.box() {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5ref;
+    position: relative;
+}
+
+.screen {
+    .box();
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+.flex() {
+    .box();
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding-top: @ptop;
+    padding-left: @pleft;
+}
+
+.vertical {
+    .flex();
+}
+
+div {
+    .vertical();
+    align-items: flex-start;
+}
+
+.horizen {
+    .flex();
+    flex-direction: row;
+}
+
+.logger {
+    .vertical();
+    align-items: flex-start;
+    border: 1px grey solid;
+    border-radius: 0.5rem;
+    width: calc(100%-10rem);
+    overflow: auto;
+}
+
+.head-bar {
+    .flex();
+    align-items: center;
+    background-color: black;
+    height: 10rem;
+    width: 100%;
+    color: white;
+    font: italic 2em "Open Sans", sans-serif;
+}
+
+.item-container {
+    width: 100%;
+    height: auto;
+}
+
+.item {
+    height: 2rem;
+}
+
+.distance,
+.boat {
+    /* padding: 0 3px; */
+    color: blue;
+}
+
+.name {
+    background-color: blue;
+    color: white;
+}

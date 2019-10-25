@@ -6,9 +6,7 @@
 
 ## description
 ```text
-web worker提供了web app类似线程/进程的能力
-web worker是一种沙盒机制，它仅通过消息与宿主通信，无法直接访问宿主变量，函数，对象
-web_worker_rpc，提供宿主与worker通信的RPC能力，并保证了以下情况时宿主的安全性 
+web_worker_rpc，提供宿主与worker通信的RPC能力，并保证了以下情况时宿主的安全性
 1. worker死循环或者任何超出了worker负荷能力 # CONFIG.HEARTBEAT
 2. worker讳规过于频繁地向宿主发生请求 # CONFIG.QPS
 3. worker内部错误达到限制数量 # CONFIG.ONERROR_LIMIT
@@ -146,7 +144,9 @@ worker.onFail = ()=>{
 ```js
 worker.onFail = ()=>{
     console.log('something bad happen in worker, id of', worker.id);
-    worker = rpc.create(workerUrl, worker.exports);
+    rpc.create(workerUrl, worker.exports).then(
+        newWorker=> worker = newWorker
+    )
 }
 ```
 

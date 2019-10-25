@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "describe your project here",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.ts",
-    "build": "npm run clean & webpack --config webpack.prod.ts",
+    "preprocess": "npx lessc example/style.less example/style.css",
+    "start": "npm run preprocess & webpack-dev-server --config webpack.dev.ts",
+    "build": "npm run clean & npm run preprocess & webpack --config webpack.prod.ts",
     "dist": "ts-node run_script distribute",
     "clean": "rimraf build dist",
     "lint": "eslint src --ext ts",
@@ -12,7 +13,6 @@
   },
   "author": "operali",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@jsrock/core_dep": "latest",
     "@jsrock/run_script": "^0.0.10",

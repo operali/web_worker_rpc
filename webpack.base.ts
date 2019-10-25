@@ -2,9 +2,7 @@ import projectConfig from './project.config';
 
 import path from 'path';
 import webpack from 'webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-
+import child_procss from 'child_process';
 type config_t = { [key: string]: any };
 const config: webpack.Configuration & config_t = {
     entry: {

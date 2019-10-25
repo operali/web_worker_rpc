@@ -50,7 +50,7 @@ class Actor {
       log: (str) => {
         logs.push(str);
         if (logs.length > 10) logs = logs.splice(logs.length - 10);
-        let logger = document.querySelector('#logger');
+        let logger = document.querySelector('.logger');
         logger.textContent = [...logs].reverse().join('\n');
       },
       setDistance: (distance) => {

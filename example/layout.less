@@ -1,0 +1,41 @@
+@pleft: 0.5rem;
+@ptop: 0.5rem;
+@borderColor: red;
+
+.box() {
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+}
+
+.screen {
+    .box();
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+.flex() {
+    .box();
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding-top: @ptop;
+    padding-left: @pleft;
+}
+
+.vertical {
+    .flex();
+}
+
+body {
+    .box();
+}
+
+.horizen {
+    .flex();
+    flex-direction: row;
+}

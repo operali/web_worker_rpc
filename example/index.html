@@ -12,21 +12,23 @@
 <body>
     <script src="web_worker_rpc.js"></script>
     <script src="index.js"></script>
-    <div class="head-bar flex-base">
-        <span class="title">RPC for web worker</span>
-    </div>
-    <div id="actor-container">
-        <button onclick="addWorker()">add worker</button>
-        <div class="item flex-base flex-h" id="actor-template" style="display:none">
-            <button class="quit">x</button>
-            <button class="toggle">stop</button>
-            <button class="speedup">speedup</button>
-            <span class="distance"></span>
-            <span class="boat">◥████<span class="name"></span>████◤</span>
+    <div class="screen">
+        <div class="head-bar">
+            <span>RPC for web worker</span>
         </div>
+        <div id="actor-container">
+            <button onclick="addWorker()">add worker</button>
+            <div class="item horizen" id="actor-template" style="display:none">
+                <button class="quit">x</button>
+                <button class="toggle">stop</button>
+                <button class="speedup">speedup</button>
+                <span class="distance"></span>
+                <span class="boat">◥████<span class="name"></span>████◤</span>
+            </div>
+        </div>
+        <pre class="logger">
+        </pre>
     </div>
-    <pre id="logger">
-    </pre>
 </body>
 
 </html>

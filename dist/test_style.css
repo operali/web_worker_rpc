@@ -1,6 +1,7 @@
 .screen {
   box-sizing: border-box;
   margin: 0;
+  padding: 0.5ref;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -9,6 +10,7 @@
 .vertical {
   box-sizing: border-box;
   margin: 0;
+  padding: 0.5ref;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,14 +21,25 @@
   padding-top: 0.5rem;
   padding-left: 0.5rem;
 }
-body {
+div {
   box-sizing: border-box;
   margin: 0;
+  padding: 0.5ref;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 1;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  align-items: flex-start;
 }
 .horizen {
   box-sizing: border-box;
   margin: 0;
+  padding: 0.5ref;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -41,6 +54,7 @@ body {
 .logger {
   box-sizing: border-box;
   margin: 0;
+  padding: 0.5ref;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -53,23 +67,22 @@ body {
   align-items: flex-start;
   border: 1px grey solid;
   border-radius: 0.5rem;
-  width: 100%;
-  min-height: 10rem;
+  width: calc(100%-10rem);
   overflow: auto;
 }
 .head-bar {
   box-sizing: border-box;
   margin: 0;
+  padding: 0.5ref;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
   flex-grow: 0;
   flex-shrink: 1;
   padding-top: 0.5rem;
   padding-left: 0.5rem;
-  justify-content: center;
+  align-items: center;
   background-color: black;
   height: 10rem;
   width: 100%;

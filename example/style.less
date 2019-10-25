@@ -1,0 +1,41 @@
+@import 'layout.less';
+
+.logger {
+    .vertical();
+    align-items: flex-start;
+    border: 1px grey solid;
+    border-radius: 0.5rem;
+    width: 100%;
+    min-height: 10rem;
+    overflow: auto;
+}
+
+.head-bar {
+    .flex();
+    justify-content: center;
+    background-color: black;
+    height: 10rem;
+    width: 100%;
+    color: white;
+    font: italic 2em "Open Sans", sans-serif;
+}
+
+.item-container {
+    width: 100%;
+    height: auto;
+}
+
+.item {
+    height: 2rem;
+}
+
+.distance,
+.boat {
+    /* padding: 0 3px; */
+    color: blue;
+}
+
+.name {
+    background-color: blue;
+    color: white;
+}
